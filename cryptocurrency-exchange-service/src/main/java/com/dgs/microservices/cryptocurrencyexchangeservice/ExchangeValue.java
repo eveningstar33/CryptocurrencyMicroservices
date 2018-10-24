@@ -8,6 +8,7 @@ public class ExchangeValue {
 	private String from;
 	private String to;
 	private BigDecimal conversionMultiple;
+	private int port;
 	
 	// We need a no-arg constructor for JPA
 	
@@ -52,5 +53,13 @@ public class ExchangeValue {
 
 	public void setConversionMultiple(BigDecimal conversionMultiple) {
 		this.conversionMultiple = conversionMultiple;
+	}
+
+	public int getPort() {
+		return port;
+	}
+
+	public void setPort(int port) {
+		this.port = port;
 	}
 }
