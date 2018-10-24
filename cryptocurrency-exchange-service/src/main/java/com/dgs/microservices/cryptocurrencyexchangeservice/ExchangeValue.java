@@ -2,10 +2,20 @@ package com.dgs.microservices.cryptocurrencyexchangeservice;
 
 import java.math.BigDecimal;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class ExchangeValue {
 
+	@Id
 	private Long id;
+	
+	@Column(name="currency_from")             // We cannot use from because in SQL from is a keyword
 	private String from;
+	
+	@Column(name="currency_to")
 	private String to;
 	private BigDecimal conversionMultiple;
 	private int port;
