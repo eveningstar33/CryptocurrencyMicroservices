@@ -1,12 +1,15 @@
 package com.dgs.microservices.cryptocurrencyconversionservice;
 
+import org.springframework.cloud.netflix.ribbon.RibbonClient;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 //It will use Feign to talk to an external microservice
 
-@FeignClient(name="cryptocurrency-exchange-service", url="localhost:8000")  
+// @FeignClient(name="cryptocurrency-exchange-service", url="localhost:8000") 
+@FeignClient(name="cryptocurrency-exchange-service")
+@RibbonClient(name="cryptocurrency-exchange-service")
 public interface CryptocurrencyExchangeServiceProxy {
 
 	/*
