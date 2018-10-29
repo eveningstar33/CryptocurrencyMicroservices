@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 //It will use Feign to talk to an external microservice
 
 // @FeignClient(name="cryptocurrency-exchange-service", url="localhost:8000") 
-@FeignClient(name="cryptocurrency-exchange-service")
+// @FeignClient(name="cryptocurrency-exchange-service")
+@FeignClient(name="netflix-zuul-api-gateway-server")
 @RibbonClient(name="cryptocurrency-exchange-service")
 public interface CryptocurrencyExchangeServiceProxy {
 
@@ -20,6 +21,7 @@ public interface CryptocurrencyExchangeServiceProxy {
 	  @PathVariable("from") String from, @PathVariable("to") String to
 	*/
 	
-	@GetMapping("/cryptocurrency-exchange/from/{from}/to/{to}")
+	// @GetMapping("/cryptocurrency-exchange/from/{from}/to/{to}")
+	@GetMapping("cryptocurrency-exchange-service/cryptocurrency-exchange/from/{from}/to/{to}")
 	public CryptocurrencyConversionBean retrieveExchangeValue(@PathVariable("from") String from, @PathVariable("to") String to);
 }
