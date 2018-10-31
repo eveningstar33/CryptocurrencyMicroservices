@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +15,8 @@ import org.springframework.web.client.RestTemplate;
 
 @RestController
 public class CryptocurrencyConversionController {
+	
+	private Logger logger = LoggerFactory.getLogger(this.getClass()); 
 	
 	@Autowired
 	private CryptocurrencyExchangeServiceProxy proxy;
@@ -53,6 +57,8 @@ public class CryptocurrencyConversionController {
 			@PathVariable String to, @PathVariable BigDecimal quantity) {
 		
 		CryptocurrencyConversionBean response = proxy.retrieveExchangeValue(from, to); 
+		
+		logger.info("{}", response); 
 		
 		return new CryptocurrencyConversionBean(response.getId(), from, to, response.getConversionMultiple(), 
 				quantity, quantity.multiply(response.getConversionMultiple()), response.getPort()); 
